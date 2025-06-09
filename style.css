@@ -1,20 +1,25 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background: #f4f4f4;
-  color: #333;
+  background-image: url('https://www.transparenttextures.com/patterns/stardust.png'), linear-gradient(to bottom, #000011, #0a0a23);
+  background-attachment: fixed;
+  background-size: cover;
+  color: #e0e0ff;
 }
 
 header {
-  background-color: #004d99;
-  color: white;
+  background-color: rgba(0, 0, 64, 0.8);
+  color: #ffffff;
   padding: 20px 0;
   text-align: center;
+  border-bottom: 2px solid #444;
+  box-shadow: 0 0 10px #222;
 }
 
 header h1 {
   margin: 0;
+  font-size: 2em;
 }
 
 nav ul {
@@ -22,18 +27,23 @@ nav ul {
   padding: 0;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   margin-top: 10px;
 }
 
 nav ul li a {
-  color: #fff;
+  color: #ffd700;
   text-decoration: none;
   font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #fff;
 }
 
 main {
-  padding: 20px;
+  padding: 30px;
 }
 
 section {
@@ -41,32 +51,39 @@ section {
 }
 
 h2 {
-  border-bottom: 2px solid #004d99;
-  padding-bottom: 5px;
+  border-bottom: 2px solid #fff;
+  padding-bottom: 10px;
+  color: #ffd700;
 }
 
 .post-list article {
-  background: #fff;
-  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
   margin: 10px 0;
-  border-left: 5px solid #004d99;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  border-left: 5px solid #ffd700;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
 }
 
 .post-list h3 {
-  margin: 0 0 5px 0;
+  margin: 0 0 10px 0;
+  color: #ffffff;
 }
 
 .post-list a {
   text-decoration: none;
-  color: #004d99;
+  color: #87cefa;
+}
+
+.post-list a:hover {
+  color: #ffffff;
 }
 
 footer {
-  background-color: #222;
-  color: #ccc;
+  background-color: rgba(20, 20, 40, 0.9);
+  color: #bbb;
   text-align: center;
-  padding: 15px 0;
+  padding: 20px 0;
+  border-top: 1px solid #333;
   margin-top: 40px;
 }
-
