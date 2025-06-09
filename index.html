@@ -1,47 +1,460 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🌌 Sumanth's Cosmic Blog</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Wanderer - Exploring the Universe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a0033 25%, #330066 50%, #1a0033 75%, #0c0c0c 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated stars background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, #ff6b9d, transparent);
+            border-radius: 50%;
+            animation: float 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b9d, #c44df0, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px rgba(255, 107, 157, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(196, 77, 240, 0.8)); }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b9d;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #ff6b9d, #c44df0);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: radial-gradient(ellipse at center, rgba(255, 107, 157, 0.1) 0%, transparent 70%);
+            border-radius: 20px;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b9d, #c44df0, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideIn 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            opacity: 0.8;
+            animation: slideIn 1s ease-out 0.5s both;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Blog posts grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .blog-post {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-post::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b9d, #c44df0, #4facfe);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 157, 0.2);
+        }
+
+        .blog-post:hover::before {
+            transform: scaleX(1);
+        }
+
+        .blog-post h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ff6b9d;
+        }
+
+        .blog-post .meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .blog-post p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: #4facfe;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .read-more:hover {
+            color: #ff6b9d;
+            transform: translateX(5px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar h3 {
+            color: #c44df0;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: linear-gradient(45deg, rgba(255, 107, 157, 0.2), rgba(196, 77, 240, 0.2));
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .tag:hover {
+            background: linear-gradient(45deg, rgba(255, 107, 157, 0.4), rgba(196, 77, 240, 0.4));
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            main {
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="stars"></div>
-  <header>
-    <h1>🌠 Sumanth's Cosmic Blog</h1>
-    <nav>
-      <ul>
-        <li><a href="#embedded">🚀 Embedded Projects</a></li>
-        <li><a href="#spiritual">🧘 Spiritual Insights</a></li>
-      </ul>
-    </nav>
-  </header>
+    <div class="stars" id="stars"></div>
+    
+    <header>
+        <nav>
+            <div class="logo">Cosmic Wanderer</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#posts">Posts</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <main>
-    <section id="embedded">
-      <h2>🚀 Embedded Projects</h2>
-      <div class="post-list">
-        <article>
-          <h3><a href="posts/embedded1.html">Smart Sensor with SPI</a></h3>
-          <p>A project using ATmega32A and STM32 for sensor communication...</p>
-        </article>
-      </div>
-    </section>
+    <main>
+        <section class="hero">
+            <h1>Journey Through the Cosmos</h1>
+            <p>Exploring the infinite wonders of space, time, and everything beyond</p>
+        </section>
 
-    <section id="spiritual">
-      <h2>🧘 Spiritual Insights</h2>
-      <div class="post-list">
-        <article>
-          <h3><a href="posts/spiritual1.html">Understanding Karma</a></h3>
-          <p>A simple explanation of how karma affects our daily life...</p>
-        </article>
-      </div>
-    </section>
-  </main>
+        <section class="blog-grid">
+            <article class="blog-post">
+                <h3>The Dance of Binary Stars</h3>
+                <div class="meta">
+                    <span>March 15, 2025</span>
+                    <span>By Stella Nova</span>
+                    <span>5 min read</span>
+                </div>
+                <p>In the vast cosmic theater, binary stars perform an eternal waltz, locked in gravitational embrace. These celestial partners orbit each other in a dance that has fascinated astronomers for centuries...</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
 
-  <footer>
-    <p>© 2025 Sumanth M N | Journey through Code & Cosmos 🪐</p>
-  </footer>
+            <article class="blog-post">
+                <h3>Black Holes: Cosmic Vacuum Cleaners</h3>
+                <div class="meta">
+                    <span>March 10, 2025</span>
+                    <span>By Cosmos Explorer</span>
+                    <span>8 min read</span>
+                </div>
+                <p>These enigmatic objects warp spacetime itself, creating gravitational fields so intense that nothing—not even light—can escape their grasp. Yet they're far more complex than simple cosmic vacuum cleaners...</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+
+            <article class="blog-post">
+                <h3>Nebulae: Stellar Nurseries of Wonder</h3>
+                <div class="meta">
+                    <span>March 5, 2025</span>
+                    <span>By Galaxy Guide</span>
+                    <span>6 min read</span>
+                </div>
+                <p>These cosmic clouds of gas and dust paint the universe in breathtaking colors. From the Orion Nebula to the Horsehead, each tells a story of stellar birth and death...</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+
+            <article class="blog-post">
+                <h3>The Search for Exoplanets</h3>
+                <div class="meta">
+                    <span>February 28, 2025</span>
+                    <span>By Planet Hunter</span>
+                    <span>7 min read</span>
+                </div>
+                <p>With thousands of exoplanets discovered, we're closer than ever to answering the age-old question: Are we alone? Each new world reveals the incredible diversity of planetary systems...</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+        </section>
+
+        <aside class="sidebar">
+            <h3>Popular Topics</h3>
+            <div class="tag-cloud">
+                <a href="#" class="tag">Black Holes</a>
+                <a href="#" class="tag">Galaxies</a>
+                <a href="#" class="tag">Nebulae</a>
+                <a href="#" class="tag">Exoplanets</a>
+                <a href="#" class="tag">Space Exploration</a>
+                <a href="#" class="tag">Cosmology</a>
+                <a href="#" class="tag">Astronomy</a>
+                <a href="#" class="tag">Universe</a>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cosmic Wanderer. Exploring the universe, one star at a time.</p>
+    </footer>
+
+    <script>
+        // Create animated stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 100;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Create floating particles
+        function createParticles() {
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                document.body.appendChild(particle);
+
+                // Remove particle after animation
+                setTimeout(() => {
+                    particle.remove();
+                }, 25000);
+            }, 3000);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize animations
+        createStars();
+        createParticles();
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
 </body>
 </html>
