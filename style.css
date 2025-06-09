@@ -1,73 +1,98 @@
+/* Space background with stars animation */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  padding: 0;
-  background-image: url('https://www.transparenttextures.com/patterns/stardust.png'), linear-gradient(to bottom, #000011, #0a0a23);
-  background-attachment: fixed;
-  background-size: cover;
+  font-family: 'Orbitron', sans-serif;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   color: #e0e0ff;
+  overflow-x: hidden;
 }
 
+.stars {
+  background: url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/media/starfield.jpg') repeat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  animation: moveStars 60s linear infinite;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+@keyframes moveStars {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-50%, -50%); }
+}
+
+/* Header */
 header {
-  background-color: rgba(0, 0, 64, 0.8);
-  color: #ffffff;
-  padding: 20px 0;
+  background: rgba(0, 0, 32, 0.8);
+  padding: 30px 20px;
   text-align: center;
-  border-bottom: 2px solid #444;
-  box-shadow: 0 0 10px #222;
+  box-shadow: 0 0 20px #00ffff88;
+  border-bottom: 2px solid #00f7ff;
 }
 
 header h1 {
   margin: 0;
-  font-size: 2em;
+  font-size: 2.5em;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #0044ff;
 }
 
+/* Nav Bar */
 nav ul {
-  list-style: none;
-  padding: 0;
   display: flex;
   justify-content: center;
-  gap: 30px;
-  margin-top: 10px;
+  gap: 40px;
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
 }
 
 nav ul li a {
-  color: #ffd700;
   text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
+  font-size: 1.1em;
+  color: #ffd700;
+  transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
-  color: #fff;
+  color: #ffffff;
 }
 
+/* Main Content */
 main {
-  padding: 30px;
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: auto;
 }
 
-section {
-  margin-bottom: 40px;
-}
-
+/* Section Titles */
 h2 {
-  border-bottom: 2px solid #fff;
+  color: #ff69b4;
+  border-bottom: 2px dashed #ff69b4;
   padding-bottom: 10px;
-  color: #ffd700;
+  margin-bottom: 20px;
 }
 
+/* Blog Post Cards */
 .post-list article {
   background: rgba(255, 255, 255, 0.05);
+  border-left: 5px solid #00ffff;
   padding: 20px;
-  margin: 10px 0;
-  border-left: 5px solid #ffd700;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  transition: transform 0.2s;
+}
+
+.post-list article:hover {
+  transform: scale(1.02);
 }
 
 .post-list h3 {
-  margin: 0 0 10px 0;
-  color: #ffffff;
+  margin-top: 0;
 }
 
 .post-list a {
@@ -79,11 +104,13 @@ h2 {
   color: #ffffff;
 }
 
+/* Footer */
 footer {
-  background-color: rgba(20, 20, 40, 0.9);
-  color: #bbb;
+  background-color: rgba(10, 10, 30, 0.9);
+  color: #ccc;
   text-align: center;
-  padding: 20px 0;
-  border-top: 1px solid #333;
-  margin-top: 40px;
+  padding: 20px;
+  font-size: 0.9em;
+  border-top: 1px solid #444;
+  box-shadow: 0 0 10px #00ffff33;
 }
